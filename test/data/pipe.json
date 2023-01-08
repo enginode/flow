@@ -1,0 +1,46 @@
+{
+  "entry": "start",
+  "vars": [
+    { "name": "name", "type": "string", "isInput": true, "isOutput": false },
+    { "name": "url", "type": "string", "isInput": false, "isOutput": false },
+    {
+      "name": "result",
+      "type": "dict",
+      "default": "{}",
+      "isInput": false,
+      "isOutput": true
+    }
+  ],
+  "nodes": [
+    {
+      "name": "start",
+      "exec": "assignment",
+      "meta": {
+        "assignments": [
+          {
+            "name": "url",
+            "from": "\"http://localhost:3000/exec/\" + name"
+          }
+        ],
+        "connector": "req"
+      }
+    },
+    {
+      "name": "req",
+      "exec": "request",
+      "meta": {
+        "url": "url",
+        "outputs": [
+          {
+            "name": "result.resCode",
+            "from": "$code"
+          },
+          {
+            "name": "result.data",
+            "from": "JSON.stringify($out)"
+          }
+        ]
+      }
+    }
+  ]
+}

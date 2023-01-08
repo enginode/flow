@@ -1,0 +1,52 @@
+{
+  "name": "fork",
+  "entry": "start",
+  "vars": [
+    {
+      "name": "n",
+      "type": "number",
+      "default": 0,
+      "isInput": false,
+      "isOutput": true
+    }
+  ],
+  "nodes": [
+    {
+      "name": "start",
+      "exec": "fork",
+      "meta": {
+        "branches": [
+          {
+            "connector": "sleep1"
+          },
+          {
+            "connector": "sleep2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "sleep1",
+      "exec": "sleep",
+      "meta": {
+        "seconds": "1",
+        "connector": "count"
+      }
+    },
+    {
+      "name": "sleep2",
+      "exec": "sleep",
+      "meta": {
+        "seconds": "1",
+        "connector": "count"
+      }
+    },
+    {
+      "name": "count",
+      "exec": "assignment",
+      "meta": {
+        "assignments": [{ "name": "n", "from": "n + 1" }]
+      }
+    }
+  ]
+}

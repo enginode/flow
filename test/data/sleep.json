@@ -1,0 +1,67 @@
+{
+  "entry": "start",
+  "vars": [
+    {
+      "name": "n",
+      "type": "number",
+      "default": 0,
+      "isInput": false,
+      "isOutput": true
+    },
+    {
+      "name": "start",
+      "type": "number",
+      "default": 0,
+      "isInput": true,
+      "isOutput": false
+    },
+    {
+      "name": "end",
+      "type": "number",
+      "default": 10,
+      "isInput": true,
+      "isOutput": false
+    }
+  ],
+  "nodes": [
+    {
+      "name": "start",
+      "exec": "decision",
+      "meta": {
+        "decisions": [
+          {
+            "condition": "start < end",
+            "connector": "sleep"
+          }
+        ],
+        "defaultConnector": "end"
+      }
+    },
+    {
+      "name": "sleep",
+      "exec": "sleep",
+      "meta": { "seconds": "1", "connector": "incr" }
+    },
+    {
+      "name": "incr",
+      "exec": "assignment",
+      "meta": {
+        "assignments": [
+          { "name": "start", "from": "start + 1" },
+          {
+            "name": "n",
+            "from": "n + start"
+          }
+        ],
+        "connector": "start"
+      }
+    },
+    {
+      "name": "end",
+      "exec": "assignment",
+      "meta": {
+        "assignments": []
+      }
+    }
+  ]
+}

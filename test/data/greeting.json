@@ -1,0 +1,59 @@
+{
+  "entry": "start",
+  "vars": [
+    {
+      "name": "name",
+      "type": "string",
+      "default": "a",
+      "isInput": true,
+      "isOutput": true
+    }
+  ],
+  "nodes": [
+    {
+      "name": "start",
+      "exec": "assignment",
+      "meta": {
+        "assignments": [
+          {
+            "name": "name",
+            "from": "name.toLowerCase()"
+          }
+        ],
+        "connector": "decision"
+      }
+    },
+    {
+      "name": "decision",
+      "exec": "decision",
+      "meta": {
+        "decisions": [
+          {
+            "condition": "name === \"jack\"",
+            "connector": "greeting"
+          }
+        ],
+        "defaultConnector": "nothing"
+      }
+    },
+    {
+      "name": "greeting",
+      "exec": "assignment",
+      "meta": {
+        "assignments": [{ "name": "name", "from": "\"Hi, Jack!\"" }]
+      }
+    },
+    {
+      "name": "nothing",
+      "exec": "assignment",
+      "meta": {
+        "assignments": [
+          {
+            "name": "name",
+            "from": "\"nothing to say.\""
+          }
+        ]
+      }
+    }
+  ]
+}

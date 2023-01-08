@@ -1,0 +1,41 @@
+{
+  "name": "sum",
+  "entry": "start",
+  "vars": [
+    {
+      "name": "a",
+      "type": "number",
+      "default": 0,
+      "isInput": true,
+      "isOutput": false
+    },
+    {
+      "name": "b",
+      "type": "number",
+      "default": 0,
+      "isInput": true,
+      "isOutput": false
+    },
+    {
+      "name": "result",
+      "type": "number",
+      "default": 0,
+      "isInput": false,
+      "isOutput": true
+    }
+  ],
+  "nodes": [
+    {
+      "name": "start",
+      "exec": "assignment",
+      "meta": {
+        "assignments": [
+          {
+            "name": "result",
+            "from": "a + b"
+          }
+        ]
+      }
+    }
+  ]
+}
